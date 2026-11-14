@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Traductor de pantalla · Screen Translator</title>
+<meta name="description" content="App para Android que traduce entre inglés y español lo que ves, escribes y escuchas. Android app that translates between Spanish and English what you see, type and hear.">
+<style>
+:root{
+  --verde:#0F5132; --verde-2:#17694A; --ambar:#FFC53D; --tinta:#14211B; --tinta-2:#4A5A52;
+  --fondo:#F3F8F5; --tarjeta:#FFFFFF; --linea:#CFE0D7; --aviso:#FFF6DD;
+}
+@media (prefers-color-scheme: dark){
+  :root{ --verde:#7FD1A8; --verde-2:#5BB98C; --tinta:#E9F2ED; --tinta-2:#A9BBB1;
+    --fondo:#0D1512; --tarjeta:#15201B; --linea:#2A3B33; --aviso:#2B2614; }
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--fondo);color:var(--tinta);
+  font:17px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:760px;margin:0 auto;padding:20px 16px 64px}
+.barra{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:28px}
+.marca{display:flex;align-items:center;gap:10px;font-weight:700}
+.sello{width:40px;height:40px;border-radius:50%;background:var(--ambar);color:#0F5132;
+  display:grid;place-items:center;font-weight:800;border:2px solid #0F5132;flex:none}
+.idiomas{display:inline-flex;border:1.5px solid var(--linea);border-radius:999px;overflow:hidden}
+.idiomas button{font:600 15px/1 inherit;padding:10px 16px;border:0;background:transparent;color:var(--tinta);cursor:pointer}
+.idiomas button[aria-pressed="true"]{background:#0F5132;color:#fff}
+h1{font-size:clamp(32px,8vw,52px);line-height:1.05;margin:0 0 12px;letter-spacing:-.02em;text-wrap:balance}
+.lede{font-size:19px;color:var(--tinta-2);margin:0 0 24px;max-width:56ch}
+.descarga{display:block;text-align:center;text-decoration:none;background:var(--ambar);color:#0F5132;
+  font-weight:800;font-size:20px;padding:18px 20px;border-radius:14px;border:2px solid #0F5132}
+.descarga:hover{filter:brightness(.96)}
+.descarga:focus-visible,.idiomas button:focus-visible{outline:3px solid var(--verde-2);outline-offset:3px}
+.req{font-size:15px;color:var(--tinta-2);margin:12px 0 0}
+h2{font-size:25px;margin:44px 0 12px;letter-spacing:-.01em}
+h3{font-size:19px;margin:26px 0 6px;color:var(--verde)}
+.funciones{display:grid;gap:10px;padding:0;margin:0;list-style:none}
+.funciones li{background:var(--tarjeta);border:1px solid var(--linea);border-radius:12px;padding:14px 16px}
+.funciones b{display:block;color:var(--verde)}
+ol{padding-left:24px;margin:8px 0}
+ol li{margin:6px 0;padding-left:4px}
+.nota{background:var(--aviso);border-left:4px solid var(--ambar);border-radius:8px;padding:14px 16px;margin:16px 0}
+.nota p{margin:0 0 8px}.nota p:last-child{margin:0}
+footer{margin-top:52px;padding-top:18px;border-top:1px solid var(--linea);font-size:14px;color:var(--tinta-2)}
+footer a{color:var(--verde)}
+[data-lang]{display:none}
+html[lang="es"] [data-lang="es"], html[lang="en"] [data-lang="en"]{display:revert}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="barra">
+  <div class="marca"><span class="sello" aria-hidden="true">ES</span>
+    <span data-lang="es">Traductor de pantalla</span><span data-lang="en">Screen Translator</span></div>
+  <div class="idiomas" role="group" aria-label="Idioma / Language">
+    <button id="b-es" aria-pressed="true">Español</button>
+    <button id="b-en" aria-pressed="false">English</button>
+  </div>
+</div>
+
+<!-- ============================== ESPAÑOL ============================== -->
+<main data-lang="es">
+  <h1>Tu teléfono, en tu idioma.</h1>
+  <p class="lede">Traduce entre inglés y español lo que ves, lo que escribes y lo que escuchas, encima de cualquier app. Todo se procesa dentro del teléfono.</p>
+  <a class="descarga" href="https://github.com/d4tabl3-creator/traductor-descargas/releases/latest/download/traductor-pantalla.apk">Descargar para Android</a>
+  <p class="req">Android 11 o más nuevo · 130 MB · Gratis · No funciona en iPhone</p>
+
+  <h2>Qué hace</h2>
+  <ul class="funciones">
+    <li><b>Traducir pantalla</b>El texto de la app que tienes abierta aparece traducido encima.</li>
+    <li><b>Traducir imágenes</b>Lee las letras dentro de fotos y capturas y las traduce.</li>
+    <li><b>Traducir lo que escribo</b>Escribes o dictas en tu idioma y lo cambia al otro antes de enviarlo. Tú decides si lo sustituye.</li>
+    <li><b>Traducir lo que se escucha</b>Subtítulos en vivo de un video, un audio o una persona hablando.</li>
+  </ul>
+  <p>Funciona en las dos direcciones: Inglés → Español y Español → Inglés. Se cambia con un toque.</p>
+
+  <h2>Privacidad</h2>
+  <p>La app pide el permiso de accesibilidad para poder leer el texto de la pantalla. Solo lee cuando tocas el botón flotante. La traducción y el reconocimiento de voz ocurren dentro del teléfono: ni el texto ni el audio se envían a ningún servidor, y no se guarda historial. Internet se usa una sola vez, para descargar los idiomas.</p>
+  <p>No funciona en apps de banco ni en otras apps que protegen su pantalla.</p>
+
+  <h2>Cómo instalarla</h2>
+  <p>La app no está en la tienda de Google, así que Android pide algunos permisos a mano. Toma unos cinco minutos. Los nombres de los botones pueden variar un poco según la marca del teléfono.</p>
+
+  <h3>1. Descargar</h3>
+  <ol>
+    <li>En tu teléfono Android toca el botón <b>Descargar para Android</b> de esta página.</li>
+    <li>Si el navegador avisa que el archivo puede ser dañino, toca <b>Descargar de todos modos</b>.</li>
+  </ol>
+
+  <h3>2. Instalar</h3>
+  <ol>
+    <li>Toca el aviso de descarga terminada, o abre tu carpeta <b>Descargas</b> y toca <b>traductor-pantalla.apk</b>.</li>
+    <li>Si dice que el teléfono no puede instalar apps desconocidas de esta fuente, toca <b>Ajustes</b>, enciende <b>Permitir desde esta fuente</b> y regresa con la flecha atrás.</li>
+    <li>Toca <b>Instalar</b>.</li>
+    <li>Si Play Protect muestra una advertencia, toca <b>Más detalles</b> y luego <b>Instalar de todas formas</b>.</li>
+    <li>Toca <b>Abrir</b>.</li>
+  </ol>
+
+  <h3>3. Descargar los idiomas</h3>
+  <ol>
+    <li>Con internet, espera a que el Paso 1 de la app diga <b>Idiomas listos</b>. Es una sola vez.</li>
+  </ol>
+
+  <h3>4. Destrabar los ajustes restringidos (Android 13 o más nuevo)</h3>
+  <ol>
+    <li>En la app toca <b>B · Abrir ajustes de accesibilidad</b>.</li>
+    <li>Toca <b>Apps instaladas</b> y luego <b>Traductor de pantalla</b>. Sale un aviso de "Ajuste restringido": toca <b>Aceptar</b>. Este intento es necesario para el punto 4.</li>
+    <li>Regresa a la app y toca <b>A · Abrir información de la app</b>.</li>
+    <li>Arriba a la derecha toca los <b>tres puntos (⋮)</b> y luego <b>Permitir ajustes restringidos</b>. Confirma con tu huella o PIN.</li>
+  </ol>
+
+  <h3>5. Activar el permiso de accesibilidad</h3>
+  <ol>
+    <li>Regresa a la app y toca otra vez <b>B · Abrir ajustes de accesibilidad</b>.</li>
+    <li>Toca <b>Apps instaladas</b> → <b>Traductor de pantalla</b>, enciende el interruptor y toca <b>Permitir</b>.</li>
+    <li>Aparece un botón redondo amarillo con las letras <b>ES</b> flotando en la pantalla.</li>
+  </ol>
+
+  <h3>6. Evitar que el teléfono la cierre</h3>
+  <ol>
+    <li>Ajustes → <b>Aplicaciones</b> → <b>Traductor de pantalla</b> → <b>Batería</b> → <b>Sin restricciones</b>.</li>
+  </ol>
+
+  <h3>7. Usarla</h3>
+  <ol>
+    <li>Toca el botón <b>ES</b> y elige una función. Puedes arrastrarlo a donde no estorbe.</li>
+    <li>La traducción aparece encima del texto. Toca la pantalla para quitarla.</li>
+    <li>Para subtítulos elige <b>Traducir lo que se escucha</b> y la fuente: <b>Audio del teléfono</b> o <b>Micrófono</b>. Acepta los permisos que pida. Para apagarlos toca la <b>✕</b> de la franja.</li>
+    <li>La última opción del menú cambia la dirección entre Inglés → Español y Español → Inglés.</li>
+  </ol>
+
+  <div class="nota">
+    <p><b>Si Google no deja instalarla o abrirla</b></p>
+    <p>Play Protect bloquea por defecto las apps que no vienen de su tienda y piden el permiso de accesibilidad. Si no te deja continuar:</p>
+    <ol>
+      <li>Abre <b>Play Store</b> y toca tu foto de perfil, arriba a la derecha.</li>
+      <li>Toca <b>Play Protect</b> y luego el engrane, arriba a la derecha.</li>
+      <li>Apaga <b>Analizar apps con Play Protect</b> y confirma.</li>
+      <li>Instala o abre la app.</li>
+      <li>Cuando ya funcione, regresa a esa pantalla y <b>vuelve a encenderlo</b>, para que el teléfono siga protegido contra otras apps. Si pregunta por Traductor de pantalla, elige conservarla.</li>
+    </ol>
+  </div>
+
+  <h2>Actualizar</h2>
+  <p>Descarga de nuevo desde esta página e instala encima. No hace falta repetir los permisos.</p>
+</main>
+
+<!-- ============================== ENGLISH ============================== -->
+<main data-lang="en">
+  <h1>Your phone, in your language.</h1>
+  <p class="lede">Translate between Spanish and English what you see, what you type and what you hear, on top of any app. Everything is processed inside the phone.</p>
+  <a class="descarga" href="https://github.com/d4tabl3-creator/traductor-descargas/releases/latest/download/traductor-pantalla.apk">Download for Android</a>
+  <p class="req">Android 11 or newer · 130 MB · Free · Does not work on iPhone</p>
+
+  <h2>What it does</h2>
+  <ul class="funciones">
+    <li><b>Translate screen</b>The text of the app you have open appears translated on top of it.</li>
+    <li><b>Translate images</b>Reads the text inside photos and screenshots and translates it.</li>
+    <li><b>Translate what I type</b>Type or dictate in your language and it switches it to the other one before you send it. You decide whether it replaces your text.</li>
+    <li><b>Translate what is heard</b>Live subtitles for a video, an audio or a person speaking.</li>
+  </ul>
+  <p>It works in both directions: Spanish → English and English → Spanish. One tap switches it.</p>
+
+  <h2>Privacy</h2>
+  <p>The app asks for the accessibility permission so it can read the text on the screen. It only reads when you tap the floating button. Translation and speech recognition happen inside the phone: neither text nor audio is sent to any server, and no history is kept. Internet is used only once, to download the languages.</p>
+  <p>It does not work in banking apps or other apps that protect their screen.</p>
+
+  <h2>How to install it</h2>
+  <p>The app is not in the Google store, so Android asks for a few permissions by hand. It takes about five minutes. Button names may vary slightly by phone brand.</p>
+
+  <h3>1. Download</h3>
+  <ol>
+    <li>On your Android phone, tap the <b>Download for Android</b> button on this page.</li>
+    <li>If the browser warns that the file may be harmful, tap <b>Download anyway</b>.</li>
+  </ol>
+
+  <h3>2. Install</h3>
+  <ol>
+    <li>Tap the download-complete notice, or open your <b>Downloads</b> folder and tap <b>traductor-pantalla.apk</b>.</li>
+    <li>If it says the phone cannot install unknown apps from this source, tap <b>Settings</b>, turn on <b>Allow from this source</b> and go back with the back arrow.</li>
+    <li>Tap <b>Install</b>.</li>
+    <li>If Play Protect shows a warning, tap <b>More details</b> and then <b>Install anyway</b>.</li>
+    <li>Tap <b>Open</b>.</li>
+  </ol>
+
+  <h3>3. Download the languages</h3>
+  <ol>
+    <li>With internet on, wait until Step 1 in the app says <b>Languages ready</b>. This happens only once.</li>
+  </ol>
+
+  <h3>4. Unlock restricted settings (Android 13 or newer)</h3>
+  <ol>
+    <li>In the app, tap <b>B · Open accessibility settings</b>.</li>
+    <li>Tap <b>Installed apps</b> and then <b>Screen Translator</b>. A "Restricted setting" notice appears: tap <b>OK</b>. This attempt is needed for point 4.</li>
+    <li>Go back to the app and tap <b>A · Open app info</b>.</li>
+    <li>At the top right, tap the <b>three dots (⋮)</b> and then <b>Allow restricted settings</b>. Confirm with your fingerprint or PIN.</li>
+  </ol>
+
+  <h3>5. Turn on the accessibility permission</h3>
+  <ol>
+    <li>Go back to the app and tap <b>B · Open accessibility settings</b> again.</li>
+    <li>Tap <b>Installed apps</b> → <b>Screen Translator</b>, turn on the switch and tap <b>Allow</b>.</li>
+    <li>A round yellow button with the letters <b>EN</b> appears floating on the screen.</li>
+  </ol>
+
+  <h3>6. Keep the phone from closing it</h3>
+  <ol>
+    <li>Settings → <b>Apps</b> → <b>Screen Translator</b> → <b>Battery</b> → <b>Unrestricted</b>.</li>
+  </ol>
+
+  <h3>7. Use it</h3>
+  <ol>
+    <li>Tap the <b>EN</b> button and choose a function. You can drag it out of the way.</li>
+    <li>The translation appears on top of the text. Tap the screen to remove it.</li>
+    <li>For subtitles choose <b>Translate what is heard</b> and the source: <b>Phone audio</b> or <b>Microphone</b>. Accept the permissions it asks for. To turn them off, tap the <b>✕</b> on the strip.</li>
+    <li>The last menu option switches the direction between Spanish → English and English → Spanish.</li>
+  </ol>
+
+  <div class="nota">
+    <p><b>If Google does not let you install or open it</b></p>
+    <p>By default, Play Protect blocks apps that do not come from its store and ask for the accessibility permission. If it will not let you continue:</p>
+    <ol>
+      <li>Open the <b>Play Store</b> and tap your profile picture at the top right.</li>
+      <li>Tap <b>Play Protect</b> and then the gear icon at the top right.</li>
+      <li>Turn off <b>Scan apps with Play Protect</b> and confirm.</li>
+      <li>Install or open the app.</li>
+      <li>Once it works, go back to that screen and <b>turn it on again</b>, so the phone stays protected against other apps. If it asks about Screen Translator, choose to keep it.</li>
+    </ol>
+  </div>
+
+  <h2>Update</h2>
+  <p>Download again from this page and install on top. You do not need to repeat the permissions.</p>
+</main>
+
+<footer>
+  <span data-lang="es">Un proyecto de <a href="https://datable.com.mx">Datable</a>. Usa Vosk (licencia Apache 2.0) para el reconocimiento de voz y Google ML Kit para la traducción.</span>
+  <span data-lang="en">A <a href="https://datable.com.mx">Datable</a> project. It uses Vosk (Apache 2.0 license) for speech recognition and Google ML Kit for translation.</span>
+</footer>
+</div>
+
+<script>
+(function(){
+  var raiz=document.documentElement, es=document.getElementById('b-es'), en=document.getElementById('b-en');
+  function poner(l){
+    raiz.lang=l;
+    es.setAttribute('aria-pressed', l==='es'); en.setAttribute('aria-pressed', l==='en');
+    document.querySelector('.sello').textContent = l==='es' ? 'ES' : 'EN';
+    try{ localStorage.setItem('idioma', l); }catch(e){}
+  }
+  var guardado=null; try{ guardado=localStorage.getItem('idioma'); }catch(e){}
+  var deUrl=(location.hash==='#en')?'en':(location.hash==='#es')?'es':null;
+  var delNavegador=((navigator.language||'es').toLowerCase().indexOf('es')===0)?'es':'en';
+  poner(deUrl||guardado||delNavegador);
+  es.onclick=function(){poner('es')}; en.onclick=function(){poner('en')};
+})();
+</script>
+</body>
+</html>
