@@ -1,0 +1,33 @@
+name: Publicar instalador
+
+# El instalador pesa más de lo que GitHub acepta en un solo archivo, así que llega
+# a esta rama en partes. Esta receta las une, comprueba que el archivo esté íntegro
+# y lo publica en la sección "Releases" de este repositorio.
+on:
+  push:
+    branches: [entrega]
+    paths: [VERSION]
+
+permissions:
+  contents: write
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Unir y comprobar
+        run: |
+          cat partes/apk.* > traductor-pantalla.apk
+          echo "$(sed -n 2p VERSION)  traductor-pantalla.apk" | sha256sum -c -
+      - name: Publicar
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TAG="$(sed -n 1p VERSION)"
+          gh release delete "$TAG" --yes --cleanup-tag 2>/dev/null || true
+          gh release create "$TAG" traductor-pantalla.apk --target main --latest \
+            --title "Traductor de pantalla · Screen Translator ${TAG#v}" \
+            --notes "Instalador para Android 11 o más nuevo. Guía: https://d4tabl3-creator.github.io/traductor-descargas/
+
+          Installer for Android 11 or newer. Guide: https://d4tabl3-creator.github.io/traductor-descargas/#en"
